@@ -1,5 +1,5 @@
 data "aws_ami" "bharathdevops" {
-  owners           = ["334864977755"]
+  owners           = ["973714476881"]
   most_recent      = true
 
   filter {
