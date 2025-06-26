@@ -44,7 +44,7 @@ module "vpn" {
 
 module "mongodb" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
     project = var.project
     environment = var.environment
 
