@@ -42,6 +42,17 @@ module "vpn" {
     vpc_id = local.vpc_id
 }
 
+module "mongodb" {
+    #source = "../../terraform-aws-securitygroup"
+    source = "git::https://github.com/daws-84s/terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
+
+    sg_name = "mongodb"
+    sg_description = "for mongodb"
+    vpc_id = local.vpc_id
+}
+
 # bastion accepting connections from my laptop
 resource "aws_security_group_rule" "bastion_laptop" {
   type              = "ingress"
