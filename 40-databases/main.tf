@@ -71,7 +71,7 @@ resource "terraform_data" "redis" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sh /tmp/bootstrap.sh redis"
+      "sudo sh /tmp/bootstrap.sh redis"
     ]
   }
 }
@@ -81,7 +81,7 @@ resource "aws_instance" "mysql" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id = local.database_subnet_id
-
+  iam_instance_profile = "ssm-read-mysql"
   tags = merge(
     local.common_tags,
     {
