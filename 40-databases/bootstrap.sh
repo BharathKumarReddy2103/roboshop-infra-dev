@@ -1,7 +1,10 @@
 #!/bin/bash
 component=$1
 
-# Install dependencies as root using sudo
+# Add /usr/local/bin to PATH so ansible-pull is found
+export PATH=$PATH:/usr/local/bin
+
+# Install dependencies
 if ! command -v ansible &> /dev/null; then
   echo "Installing Ansible..."
 
@@ -17,5 +20,5 @@ if ! command -v ansible &> /dev/null; then
   sudo pip3 install ansible
 fi
 
-# Run ansible-pull (does NOT need sudo if IAM role is attached)
+# Run ansible-pull
 ansible-pull -U https://github.com/BharathKumarReddy2103/Ansible-Roboshop-Project-Using-Roles.git -e component=$component main.yaml
