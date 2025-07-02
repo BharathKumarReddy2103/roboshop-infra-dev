@@ -88,7 +88,7 @@ module "shipping" {
 
 module "payment" {
     #source = "../../terraform-aws-securitygroup"
-    source = "git::https://https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
     project = var.project
     environment = var.environment
 
