@@ -577,6 +577,7 @@ resource "aws_security_group_rule" "frontend_alb_https" {
   security_group_id = module.frontend_alb.sg_id
 }
 
+#bastion accepting connections from my laptop
 resource "aws_security_group_rule" "bastion_laptop" {
   type              = "ingress"
   from_port         = 22
