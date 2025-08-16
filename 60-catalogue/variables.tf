@@ -2,9 +2,9 @@ variable "project" {
     default = "roboshop"
 }
 
-# variable "environment" {
-#     default = "dev"
-# }
+variable "environment" {
+    default = "dev"
+}
 
 variable "zone_id" {
   default = "Z09266885JREMC64NO1J"
