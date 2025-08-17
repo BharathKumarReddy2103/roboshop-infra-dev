@@ -1,6 +1,6 @@
 # 🛠️ roboshop-infra-setup
 
-This repository provides a **production-grade infrastructure setup** for the [Roboshop Application](https://github.com/BharathKumarReddy2103), a microservices-based e-commerce platform for selling robots.
+This repository provides a **production-grade infrastructure setup** for the Roboshop Application, a microservices-based e-commerce platform for selling robots.
 
 It uses **Terraform** and modular IaC principles to provision everything required to run Roboshop in a secure, scalable, and highly available environment on AWS.
 
