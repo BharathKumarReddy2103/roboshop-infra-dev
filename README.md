@@ -45,7 +45,7 @@ module "roboshop" {
 
 ## 📚 References
 
-- [Roboshop Application](https://github.com/BharathKumarReddy2103/roboshop-infra-dev)
+- [Roboshop Application](https://github.com/BharathKumarReddy2103/roboshop-infra-setup)
 - [Roboshop Terraform AWS Module](https://github.com/BharathKumarReddy2103/terraform-aws-roboshop)
 
 ## 🤝 Contributing
