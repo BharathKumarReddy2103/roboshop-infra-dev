@@ -20,7 +20,7 @@ This project provides a robust, production-grade infrastructure setup for the Ro
 ## 🚦 Getting Started
 
 1. 📥 **Clone this repository.**
-2. 🛠️ **Install Terraform** (version X.Y.Z or newer recommended).
+2. 🛠️ **Install Terraform** (version 1.12.1 or newer recommended).
 3. 🔑 **Configure your AWS credentials.**
 4. ✏️ **Adjust variables as needed** for your environment (see `variables.tf` or examples below).
 5. 🚀 **Initialize and apply:**
