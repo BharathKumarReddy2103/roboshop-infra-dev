@@ -124,7 +124,7 @@ terraform apply
 ## 📚 Related Projects
 
 * [terraform-aws-roboshop](https://github.com/BharathKumarReddy2103/terraform-aws-roboshop): Reusable Terraform module for Roboshop
-* [roboshop-microservices](https://github.com/BharathKumarReddy2103): Source code and deployment scripts (if available)
+* [roboshop-microservices](https://github.com/BharathKumarReddy2103/roboshop-infra-setup): Source code and deployment scripts (if available)
 
 ---
 
