@@ -1,6 +1,6 @@
-# 🤖 Roboshop Infra Dev 🚀
+# 🤖 Roboshop Infra- 🚀
 
-Welcome to the **roboshop-infra-dev** repository. This project provides a robust, production-grade infrastructure setup for the [Roboshop application](https://roboshop.com/)—an e-commerce platform for selling robots—using [Terraform](https://www.terraform.io/) 🛠️. The infrastructure code in this repo is designed to rapidly provision, manage, and scale cloud resources for Roboshop deployments in any environment.
+Welcome to the **roboshop-infra-** repository. This project provides a robust, production-grade infrastructure setup for the [Roboshop application](https://roboshop.com/)—an e-commerce platform for selling robots—using [Terraform](https://www.terraform.io/) 🛠️. The infrastructure code in this repo is designed to rapidly provision, manage, and scale cloud resources for Roboshop deployments in any environment.
 
 ---
 
