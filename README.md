@@ -1,113 +1,141 @@
-# 🤖 Roboshop Infra Dev 🚀
+# 🛠️ roboshop-infra-setup
 
-Welcome to the **roboshop-infra-dev** repository. This project provides a robust, production-grade infrastructure setup for the [Roboshop application](https://roboshop.com/)—an e-commerce platform for selling robots—using [Terraform](https://www.terraform.io/) 🛠️. The infrastructure code in this repo is designed to rapidly provision, manage, and scale cloud resources for Roboshop deployments in any environment.
+This repository provides a **production-grade infrastructure setup** for the Roboshop Application, a microservices-based e-commerce platform for selling robots.
 
----
-
-## 📖 Background
-
-This infrastructure setup has been **successfully implemented and battle-tested in both my previous and current companies**, ensuring its reliability and adaptability across different organizational environments and requirements.
+It uses **Terraform** and modular IaC principles to provision everything required to run Roboshop in a secure, scalable, and highly available environment on AWS.
 
 ---
 
-## 🌐 Overview
+## 🔧 Project Modules
 
-This repository automates the end-to-end infrastructure required to run the Roboshop application securely and reliably. All resources are defined as code using Terraform, ensuring repeatable, consistent, and auditable infrastructure deployments.
-
----
-
-## 🏗️ Key Components
-
-- **VPC Creation**: Secure, logically isolated Virtual Private Cloud for application workloads.
-- **Security Groups**: Fine-grained access control for all deployed resources 🔒.
-- **Bastion Server**: Secure entry point for SSH/RDP access to private resources 🕵️‍♂️.
-- **VPN Setup**: Encrypted connectivity for remote access and site-to-site networking 🌍.
-- **Database Provisioning**: Automated deployment of scalable databases for the application's backend 🗄️.
-- **Backend Application Load Balancer (ALB)**: Highly available load balancing for backend services ⚖️.
+This repo integrates with the reusable Terraform module:
+👉 [`terraform-aws-roboshop`](https://github.com/BharathKumarReddy2103/terraform-aws-roboshop)
 
 ---
 
-## 🚦 Getting Started
+## 🧱 Infrastructure Components
 
-### 1. Prerequisites
+The following AWS services and components are provisioned:
 
-- [Terraform](https://www.terraform.io/downloads.html) ≥ v1.0
-- AWS/GCP/Azure CLI (based on your cloud provider)
-- Properly configured cloud credentials
+### 1. **Networking**
+- VPC with public and private subnets
+- Internet Gateway (IGW) and NAT Gateway
+- Route Tables and associations
+- Bastion Host (jumpbox for SSH into private subnets)
+- Site-to-Site VPN for secure on-premise connectivity
 
-### 2. Usage
+### 2. **Security**
+- Fine-grained **Security Groups** for each component
+- IAM roles and policies for access control
+- TLS certificates via **AWS Certificate Manager (ACM)**
+
+### 3. **Compute**
+- EC2 instances for Bastion and other services
+- Auto Scaling Groups behind Application Load Balancers (ALBs)
+- Separate ALBs for **frontend** and **backend** microservices
+
+### 4. **Storage & Databases**
+- Amazon RDS (MySQL/PostgreSQL)
+- MongoDB and Redis (self-managed or AWS-hosted)
+- EBS volumes for persistent storage
+
+### 5. **Microservices Deployment**
+Infrastructure setup for the following services:
+- `catalogue`
+- `user`
+- `cart`
+- `shipping`
+- `payment`
+- `frontend`
+
+### 6. **CDN (Content Delivery Network)**
+- AWS CloudFront integration with ACM and ALB
+- Caching and HTTPS termination at the edge
+
+---
+
+## 📁 Repository Structure
+
+```
+
+roboshop-infra-setup/
+│
+├── vpc/                  # VPC, subnets, route tables
+├── security-groups/      # SGs for each service
+├── bastion/              # Bastion host setup
+├── vpn/                  # VPN tunnel config
+├── acm/                  # ACM TLS certificates
+├── databases/            # RDS, MongoDB, Redis
+├── frontend-alb/         # Load balancer for frontend
+├── backend-alb/          # Load balancer for backend
+├── services/             # Microservices (catalogue, user, etc.)
+├── cdn/                  # CloudFront CDN configuration
+└── acm                   # AWS Certificate Manager
+
+````
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
 
 ```bash
-# Clone the repository
-git clone https://github.com/BharathKumarReddy2103/roboshop-infra-dev.git
-cd roboshop-infra-dev
+git clone https://github.com/BharathKumarReddy2103/roboshop-infra-setup.git
+cd roboshop-infra-setup
+````
 
-# Initialize Terraform
+### 2. Configure Terraform
+
+Ensure you have:
+
+* AWS credentials configured (`~/.aws/credentials`)
+* Backend (S3/DynamoDB) setup for state locking (if needed)
+
+### 3. Initialize and Apply
+
+```bash
 terraform init
-
-# Review the plan
 terraform plan
-
-# Apply to provision infrastructure
 terraform apply
 ```
 
-> ⚠️ **Note:** All resources incur cloud costs. Review and adjust variables as needed before applying.
+---
+
+## ✅ Prerequisites
+
+* Terraform v1.12+
+* AWS CLI configured
+* IAM user with required permissions
+* Domain name for ACM and CDN setup
 
 ---
 
-## 📁 Directory Structure
+## 📌 Best Practices Followed
 
-```
-roboshop-infra-dev/
-├── modules/
-│   ├── vpc/
-│   ├── security_groups/
-│   ├── bastion/
-│   ├── vpn/
-│   ├── databases/
-│   └── backend-alb/
-├── main.tf
-├── variables.tf
-├── outputs.tf
-└── README.md
-```
+* Modular and reusable code
+* Infrastructure as Code (IaC)
+* Secure by default (least privilege IAM, VPC design)
+* HTTPS with ACM and CloudFront
+* Scalable architecture using ALB and ASGs
 
 ---
 
-## 📌 Features
+## 📚 Related Projects
 
-- **Modular Design**: Easily extendable and maintainable code base using Terraform modules.
-- **Reusable**: Can be adapted for multiple environments (dev, staging, production).
-- **Secure**: Follows cloud security best practices.
-- **Documented**: All resources and variables are clearly described in code.
-
----
-
-## 🧑‍💻 Contributing
-
-Contributions, improvements, and suggestions are welcome. Please fork the repository and submit a pull request. For major changes, open an issue first to discuss what you would like to change.
-
----
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
+* [terraform-aws-roboshop](https://github.com/BharathKumarReddy2103/terraform-aws-roboshop): Reusable Terraform module for Roboshop
+* [roboshop-microservices](https://github.com/BharathKumarReddy2103/roboshop-infra-setup): Source code and deployment scripts (if available)
 
 ---
 
 ## 🙋‍♂️ Author
 
 **Bharath Kumar Reddy**
-
-Connect on [GitHub](https://github.com/BharathKumarReddy2103)
-
----
-
-## 📬 Contact
-
-For questions or support, please open an [issue](https://github.com/BharathKumarReddy2103/roboshop-infra-dev/issues).
+Senior DevOps & Cloud Engineer
+🔗 [LinkedIn](https://linkedin.com/in/bharathkumar-reddy-n)
 
 ---
 
-> 🚀 **Automate. Secure. Scale.** – Empower your e-commerce infrastructure with roboshop-infra-dev
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE)
