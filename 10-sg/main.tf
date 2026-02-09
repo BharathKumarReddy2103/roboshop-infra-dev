@@ -577,15 +577,15 @@ module "bastion" {
 #   security_group_id = module.frontend_alb.sg_id
 # }
 
-# #bastion accepting connections from my laptop
-# resource "aws_security_group_rule" "bastion_laptop" {
-#   type              = "ingress"
-#   from_port         = 22
-#   to_port           = 22
-#   protocol          = "tcp"
-#   cidr_blocks       = ["0.0.0.0/0"]
-#   security_group_id = module.bastion.sg_id
-# }
+# bastion accepting connections from my laptop
+resource "aws_security_group_rule" "bastion_laptop" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.bastion.sg_id
+}
 
 # #VPN ports 22, 443, 1194, 943
 # resource "aws_security_group_rule" "vpn_ssh" {
