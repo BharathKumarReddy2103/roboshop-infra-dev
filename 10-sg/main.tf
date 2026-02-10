@@ -173,23 +173,23 @@ resource "aws_security_group_rule" "mongodb_vpn" {
 #   security_group_id = module.mongodb.sg_id
 # }
 
-resource "aws_security_group_rule" "mongodb_catalogue" {
-  type              = "ingress"
-  from_port         = 27017
-  to_port           = 27017
-  protocol          = "tcp"
-  source_security_group_id = module.catalogue.sg_id
-  security_group_id = module.mongodb.sg_id
-}
+# resource "aws_security_group_rule" "mongodb_catalogue" {
+#   type              = "ingress"
+#   from_port         = 27017
+#   to_port           = 27017
+#   protocol          = "tcp"
+#   source_security_group_id = module.catalogue.sg_id
+#   security_group_id = module.mongodb.sg_id
+# }
 
-resource "aws_security_group_rule" "mongodb_user" {
-  type              = "ingress"
-  from_port         = 27017
-  to_port           = 27017
-  protocol          = "tcp"
-  source_security_group_id = module.user.sg_id
-  security_group_id = module.mongodb.sg_id
-}
+# resource "aws_security_group_rule" "mongodb_user" {
+#   type              = "ingress"
+#   from_port         = 27017
+#   to_port           = 27017
+#   protocol          = "tcp"
+#   source_security_group_id = module.user.sg_id
+#   security_group_id = module.mongodb.sg_id
+# }
 
 # # Redis
 # resource "aws_security_group_rule" "redis_vpn" {
