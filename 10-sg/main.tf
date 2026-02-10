@@ -1,13 +1,13 @@
-# module "mongodb" {
-#     #source = "../../terraform-aws-securitygroup"
-#     source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
-#     project = var.project
-#     environment = var.environment
+module "mongodb" {
+    #source = "../../terraform-aws-securitygroup"
+    source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
 
-#     sg_name = "mongodb"
-#     sg_description = "for mongodb"
-#     vpc_id = local.vpc_id
-# }
+    sg_name = "mongodb"
+    sg_description = "for mongodb"
+    vpc_id = local.vpc_id
+}
 
 # module "redis" {
 #     #source = "../../terraform-aws-securitygroup"
@@ -153,15 +153,15 @@ module "vpn" {
 }
 
 # MongoDB
-# resource "aws_security_group_rule" "mongodb_vpn" {
-#   count = length(var.mongodb_ports_vpn)
-#   type              = "ingress"
-#   from_port         = var.mongodb_ports_vpn[count.index]
-#   to_port           = var.mongodb_ports_vpn[count.index]
-#   protocol          = "tcp"
-#   source_security_group_id = module.vpn.sg_id
-#   security_group_id = module.mongodb.sg_id
-# }
+resource "aws_security_group_rule" "mongodb_vpn" {
+  count = length(var.mongodb_ports_vpn)
+  type              = "ingress"
+  from_port         = var.mongodb_ports_vpn[count.index]
+  to_port           = var.mongodb_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id
+  security_group_id = module.mongodb.sg_id
+}
 
 # resource "aws_security_group_rule" "mongodb_bastion" {
 #   count = length(var.mongodb_ports_vpn)
@@ -173,23 +173,23 @@ module "vpn" {
 #   security_group_id = module.mongodb.sg_id
 # }
 
-# resource "aws_security_group_rule" "mongodb_catalogue" {
-#   type              = "ingress"
-#   from_port         = 27017
-#   to_port           = 27017
-#   protocol          = "tcp"
-#   source_security_group_id = module.catalogue.sg_id
-#   security_group_id = module.mongodb.sg_id
-# }
+resource "aws_security_group_rule" "mongodb_catalogue" {
+  type              = "ingress"
+  from_port         = 27017
+  to_port           = 27017
+  protocol          = "tcp"
+  source_security_group_id = module.catalogue.sg_id
+  security_group_id = module.mongodb.sg_id
+}
 
-# resource "aws_security_group_rule" "mongodb_user" {
-#   type              = "ingress"
-#   from_port         = 27017
-#   to_port           = 27017
-#   protocol          = "tcp"
-#   source_security_group_id = module.user.sg_id
-#   security_group_id = module.mongodb.sg_id
-# }
+resource "aws_security_group_rule" "mongodb_user" {
+  type              = "ingress"
+  from_port         = 27017
+  to_port           = 27017
+  protocol          = "tcp"
+  source_security_group_id = module.user.sg_id
+  security_group_id = module.mongodb.sg_id
+}
 
 # # Redis
 # resource "aws_security_group_rule" "redis_vpn" {
