@@ -1,7 +1,7 @@
-resource "aws_key_pair" "openvpn" {
-  key_name   = "openvpn"
-  public_key = file("c:/Users/user/Downloads/openvpn.pub") # for mac use /
-}
+# resource "aws_key_pair" "openvpn" {
+#   key_name   = "openvpn"
+#   public_key = file("c:/Users/user/Downloads/openvpn.pub") # for mac use /
+# }
 
 resource "aws_instance" "vpn" {
   ami           = local.ami_id
@@ -20,11 +20,11 @@ resource "aws_instance" "vpn" {
   )
 }
 
-resource "aws_route53_record" "vpn" {
-  zone_id = var.zone_id
-  name    = "vpn-${var.environment}.${var.zone_name}"
-  type    = "A"
-  ttl     = 1
-  records = [aws_instance.vpn.public_ip]
-  allow_overwrite = true
-}
+# resource "aws_route53_record" "vpn" {
+#   zone_id = var.zone_id
+#   name    = "vpn-${var.environment}.${var.zone_name}"
+#   type    = "A"
+#   ttl     = 1
+#   records = [aws_instance.vpn.public_ip]
+#   allow_overwrite = true
+# }
