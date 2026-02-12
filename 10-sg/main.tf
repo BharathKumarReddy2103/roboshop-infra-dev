@@ -173,14 +173,14 @@ resource "aws_security_group_rule" "mongodb_vpn" {
 #   security_group_id = module.mongodb.sg_id
 # }
 
-# resource "aws_security_group_rule" "mongodb_catalogue" {
-#   type              = "ingress"
-#   from_port         = 27017
-#   to_port           = 27017
-#   protocol          = "tcp"
-#   source_security_group_id = module.catalogue.sg_id
-#   security_group_id = module.mongodb.sg_id
-# }
+resource "aws_security_group_rule" "mongodb_catalogue" {
+  type              = "ingress"
+  from_port         = 27017
+  to_port           = 27017
+  protocol          = "tcp"
+  source_security_group_id = module.catalogue.sg_id
+  security_group_id = module.mongodb.sg_id
+}
 
 # resource "aws_security_group_rule" "mongodb_user" {
 #   type              = "ingress"
@@ -290,42 +290,42 @@ resource "aws_security_group_rule" "rabbitmq_vpn" {
 #   security_group_id = module.rabbitmq.sg_id
 # }
 
-# #Catalogue
-# resource "aws_security_group_rule" "catalogue_vpn_ssh" {
-#   type              = "ingress"
-#   from_port         = 22
-#   to_port           = 22
-#   protocol          = "tcp"
-#   source_security_group_id = module.vpn.sg_id
-#   security_group_id = module.catalogue.sg_id
-# }
+# Catalogue
+resource "aws_security_group_rule" "catalogue_vpn_ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id
+  security_group_id = module.catalogue.sg_id
+}
 
-# resource "aws_security_group_rule" "catalogue_bastion_ssh" {
-#   type              = "ingress"
-#   from_port         = 22
-#   to_port           = 22
-#   protocol          = "tcp"
-#   source_security_group_id = module.bastion.sg_id
-#   security_group_id = module.catalogue.sg_id
-# }
+resource "aws_security_group_rule" "catalogue_bastion_ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.catalogue.sg_id
+}
 
-# resource "aws_security_group_rule" "catalogue_vpn_http" {
-#   type              = "ingress"
-#   from_port         = 8080
-#   to_port           = 8080
-#   protocol          = "tcp"
-#   source_security_group_id = module.vpn.sg_id
-#   security_group_id = module.catalogue.sg_id
-# }
+resource "aws_security_group_rule" "catalogue_vpn_http" {
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id
+  security_group_id = module.catalogue.sg_id
+}
 
-# resource "aws_security_group_rule" "catalogue_backend_alb" {
-#   type              = "ingress"
-#   from_port         = 8080
-#   to_port           = 8080
-#   protocol          = "tcp"
-#   source_security_group_id = module.backend_alb.sg_id
-#   security_group_id = module.catalogue.sg_id
-# }
+resource "aws_security_group_rule" "catalogue_backend_alb" {
+  type              = "ingress"
+  from_port         = 8080
+  to_port           = 8080
+  protocol          = "tcp"
+  source_security_group_id = module.backend_alb.sg_id
+  security_group_id = module.catalogue.sg_id
+}
 
 # #User
 # resource "aws_security_group_rule" "user_vpn_ssh" {
