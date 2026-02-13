@@ -170,31 +170,31 @@ resource "aws_autoscaling_group" "catalogue" {
   }
 }
 
-# resource "aws_autoscaling_policy" "catalogue" {
-#   name                   = "${var.project}-${var.environment}-catalogue"
-#   autoscaling_group_name = aws_autoscaling_group.catalogue.name
-#   policy_type            = "TargetTrackingScaling"
-#   target_tracking_configuration {
-#     predefined_metric_specification {
-#       predefined_metric_type = "ASGAverageCPUUtilization"
-#     }
+resource "aws_autoscaling_policy" "catalogue" {
+  name                   = "${var.project}-${var.environment}-catalogue"
+  autoscaling_group_name = aws_autoscaling_group.catalogue.name
+  policy_type            = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
 
-#     target_value = 75.0
-#   }
-# }
+    target_value = 75.0
+  }
+}
 
-# resource "aws_lb_listener_rule" "catalogue" {
-#   listener_arn = local.backend_alb_listener_arn
-#   priority     = 10
+resource "aws_lb_listener_rule" "catalogue" {
+  listener_arn = local.backend_alb_listener_arn
+  priority     = 10
 
-#   action {
-#     type             = "forward"
-#     target_group_arn = aws_lb_target_group.catalogue.arn
-#   }
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.catalogue.arn
+  }
 
-#   condition {
-#     host_header {
-#       values = ["catalogue.backend-${var.environment}.${var.zone_name}"]
-#     }
-#   }
-# }
+  condition {
+    host_header {
+      values = ["catalogue.backend-${var.environment}.${var.zone_name}"]
+    }
+  }
+}
