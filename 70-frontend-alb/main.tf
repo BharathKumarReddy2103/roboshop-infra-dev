@@ -35,7 +35,7 @@ resource "aws_lb_listener" "frontend_alb" {
 
 resource "aws_route53_record" "frontend_alb" {
   zone_id = var.zone_id
-  name    = "${var.environment}.{var.zone_name}" #dev.bharath2103.site
+  name    = "${var.environment}.${var.zone_name}" #dev.bharath2103.site
   type    = "A"
 
   alias {
