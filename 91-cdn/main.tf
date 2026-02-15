@@ -34,7 +34,6 @@ resource "aws_cloudfront_distribution" "roboshop" {
     cache_policy_id  = data.aws_cloudfront_cache_policy.cacheEnable.id
   }
 
-
   price_class = "PriceClass_200"
 
   restrictions {
