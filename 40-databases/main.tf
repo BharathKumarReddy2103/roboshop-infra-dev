@@ -22,12 +22,12 @@ resource "terraform_data" "mongodb" {
     destination = "/tmp/bootstrap.sh"
   }
 
-#   connection {
-#     type     = "ssh"
-#     user     = "ec2-user"
-#     password = "DevOps321"
-#     host     = aws_instance.mongodb.private_ip
-#   }
+  connection {
+    type     = "ssh"
+    user     = "ec2-user"
+    password = "DevOps321"
+    host     = aws_instance.mongodb.private_ip
+  }
 
 #   provisioner "remote-exec" {
 #     inline = [
