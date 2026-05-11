@@ -188,4 +188,4 @@ resource "terraform_data" "mongodb" {
 #   ttl     = 1
 #   records = [aws_instance.rabbitmq.private_ip]
 #   allow_overwrite = true
-# }
+}
