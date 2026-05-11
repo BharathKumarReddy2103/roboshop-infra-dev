@@ -9,38 +9,38 @@ module "mongodb" {
     vpc_id = local.vpc_id
 }
 
-# module "redis" {
-#     #source = "../../terraform-aws-securitygroup"
-#     source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
-#     project = var.project
-#     environment = var.environment
+module "redis" {
+    #source = "../../terraform-aws-securitygroup"
+    source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
 
-#     sg_name = "redis"
-#     sg_description = "for redis"
-#     vpc_id = local.vpc_id
-# }
+    sg_name = "redis"
+    sg_description = "for redis"
+    vpc_id = local.vpc_id
+}
 
-# module "mysql" {
-#     #source = "../../terraform-aws-securitygroup"
-#     source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
-#     project = var.project
-#     environment = var.environment
+module "mysql" {
+    #source = "../../terraform-aws-securitygroup"
+    source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
 
-#     sg_name = "mysql"
-#     sg_description = "for mysql"
-#     vpc_id = local.vpc_id
-# }
+    sg_name = "mysql"
+    sg_description = "for mysql"
+    vpc_id = local.vpc_id
+}
 
-# module "rabbitmq" {
-#     #source = "../../terraform-aws-securitygroup"
-#     source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
-#     project = var.project
-#     environment = var.environment
+module "rabbitmq" {
+    #source = "../../terraform-aws-securitygroup"
+    source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
 
-#     sg_name = "rabbitmq"
-#     sg_description = "for rabbitmq"
-#     vpc_id = local.vpc_id
-# }
+    sg_name = "rabbitmq"
+    sg_description = "for rabbitmq"
+    vpc_id = local.vpc_id
+}
 
 # module "catalogue" {
 #     #source = "../../terraform-aws-securitygroup"
@@ -152,7 +152,7 @@ module "vpn" {
     vpc_id = local.vpc_id
 }
 
-# # MongoDB
+# MongoDB
 resource "aws_security_group_rule" "mongodb_vpn" {
   count = length(var.mongodb_ports_vpn)
   type              = "ingress"
@@ -191,16 +191,15 @@ resource "aws_security_group_rule" "mongodb_vpn" {
 # #   security_group_id = module.mongodb.sg_id
 # # }
 
-# # # Redis
-# resource "aws_security_group_rule" "redis_vpn" {
-#   count = length(var.redis_ports_vpn)
-#   type              = "ingress"
-#   from_port         = var.redis_ports_vpn[count.index]
-#   to_port           = var.redis_ports_vpn[count.index]
-#   protocol          = "tcp"
-#   source_security_group_id = module.vpn.sg_id
-#   security_group_id = module.redis.sg_id
-# }
+resource "aws_security_group_rule" "redis_vpn" {
+  count = length(var.redis_ports_vpn)
+  type              = "ingress"
+  from_port         = var.redis_ports_vpn[count.index]
+  to_port           = var.redis_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id
+  security_group_id = module.redis.sg_id
+}
 
 # resource "aws_security_group_rule" "redis_bastion" {
 #   count = length(var.redis_ports_vpn)
@@ -230,16 +229,15 @@ resource "aws_security_group_rule" "mongodb_vpn" {
 # #   security_group_id = module.redis.sg_id
 # # }
 
-# # # MYSQL
-# resource "aws_security_group_rule" "mysql_vpn" {
-#   count = length(var.mysql_ports_vpn)
-#   type              = "ingress"
-#   from_port         = var.mysql_ports_vpn[count.index]
-#   to_port           = var.mysql_ports_vpn[count.index]
-#   protocol          = "tcp"
-#   source_security_group_id = module.vpn.sg_id
-#   security_group_id = module.mysql.sg_id
-# }
+resource "aws_security_group_rule" "mysql_vpn" {
+  count = length(var.mysql_ports_vpn)
+  type              = "ingress"
+  from_port         = var.mysql_ports_vpn[count.index]
+  to_port           = var.mysql_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id
+  security_group_id = module.mysql.sg_id
+}
 
 # resource "aws_security_group_rule" "mysql_bastion" {
 #   count = length(var.mysql_ports_vpn)
@@ -260,16 +258,15 @@ resource "aws_security_group_rule" "mongodb_vpn" {
 # #   security_group_id = module.mysql.sg_id
 # # }
 
-# # # RabbitMQ
-# resource "aws_security_group_rule" "rabbitmq_vpn" {
-#   count = length(var.rabbitmq_ports_vpn)
-#   type              = "ingress"
-#   from_port         = var.rabbitmq_ports_vpn[count.index]
-#   to_port           = var.rabbitmq_ports_vpn[count.index]
-#   protocol          = "tcp"
-#   source_security_group_id = module.vpn.sg_id
-#   security_group_id = module.rabbitmq.sg_id
-# }
+resource "aws_security_group_rule" "rabbitmq_vpn" {
+  count = length(var.rabbitmq_ports_vpn)
+  type              = "ingress"
+  from_port         = var.rabbitmq_ports_vpn[count.index]
+  to_port           = var.rabbitmq_ports_vpn[count.index]
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id
+  security_group_id = module.rabbitmq.sg_id
+}
 
 # resource "aws_security_group_rule" "rabbitmq_bastion" {
 #   count = length(var.rabbitmq_ports_vpn)
