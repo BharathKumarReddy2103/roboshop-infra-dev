@@ -1,6 +1,6 @@
 resource "aws_key_pair" "openvpn" {
   key_name   = "openvpn"
-  public_key = file("c:/Users/user/Downloads/openvpn.pub") # for mac use /
+  public_key = file("D:\\Commands\\keypair\\openvpn.pub") # for mac use /
 }
 
 resource "aws_instance" "vpn" {
@@ -10,7 +10,7 @@ resource "aws_instance" "vpn" {
   subnet_id = local.public_subnet_id
   #key_name = "aws key pair" # make sure this key exist in AWS
   key_name = aws_key_pair.openvpn.key_name
-  user_data = file("openvpn.sh")
+  user_data = file("D:\\Commands\\keypair\\openvpn.sh")
 
   tags = merge(
     local.common_tags,
