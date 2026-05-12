@@ -42,16 +42,16 @@ module "rabbitmq" {
     vpc_id = local.vpc_id
 }
 
-# module "catalogue" {
-#     #source = "../../terraform-aws-securitygroup"
-#     source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
-#     project = var.project
-#     environment = var.environment
+module "catalogue" {
+    #source = "../../terraform-aws-securitygroup"
+    source = "git::https://github.com/BharathKumarReddy2103/terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
 
-#     sg_name = "catalogue"
-#     sg_description = "for catalogue"
-#     vpc_id = local.vpc_id
-# }
+    sg_name = "catalogue"
+    sg_description = "for catalogue"
+    vpc_id = local.vpc_id
+}
 
 # module "user" {
 #     #source = "../../terraform-aws-securitygroup"
