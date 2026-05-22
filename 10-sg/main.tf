@@ -152,7 +152,7 @@ module "vpn" {
     vpc_id = local.vpc_id
 }
 
-# MongoDB
+#MongoDB
 resource "aws_security_group_rule" "mongodb_vpn" {
   count = length(var.mongodb_ports_vpn)
   type              = "ingress"
@@ -360,7 +360,7 @@ resource "aws_security_group_rule" "user_backend_alb" {
   security_group_id = module.user.sg_id
 }
 
-#Cart
+# Cart
 resource "aws_security_group_rule" "cart_vpn_ssh" {
   type              = "ingress"
   from_port         = 22
@@ -434,7 +434,7 @@ resource "aws_security_group_rule" "shipping_backend_alb" {
   security_group_id = module.shipping.sg_id
 }
 
-#Payment
+# Payment
 resource "aws_security_group_rule" "payment_vpn_ssh" {
   type              = "ingress"
   from_port         = 22
@@ -471,7 +471,7 @@ resource "aws_security_group_rule" "payment_backend_alb" {
   security_group_id = module.payment.sg_id
 }
 
-# # #Backend ALB
+#Backend ALB
 resource "aws_security_group_rule" "backend_alb_vpn" {
   type              = "ingress"
   from_port         = 80
@@ -573,7 +573,7 @@ resource "aws_security_group_rule" "frontend_alb_https" {
   security_group_id = module.frontend_alb.sg_id
 }
 
-# # bastion accepting connections from my laptop
+#bastion accepting connections from my laptop
 resource "aws_security_group_rule" "bastion_laptop" {
   type              = "ingress"
   from_port         = 22
@@ -583,7 +583,7 @@ resource "aws_security_group_rule" "bastion_laptop" {
   security_group_id = module.bastion.sg_id
 }
 
-# #VPN ports 22, 443, 1194, 943
+#VPN ports 22, 443, 1194, 943
 resource "aws_security_group_rule" "vpn_ssh" {
   type              = "ingress"
   from_port         = 22
@@ -620,7 +620,7 @@ resource "aws_security_group_rule" "vpn_943" {
   security_group_id = module.vpn.sg_id
 }
 
-# # backend ALB accepting connections from my bastion host on port no 80
+# backend ALB accepting connections from my bastion host on port no 80
 # resource "aws_security_group_rule" "backend_alb_bastion" {
 #   type              = "ingress"
 #   from_port         = 80
