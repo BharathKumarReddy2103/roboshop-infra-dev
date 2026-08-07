@@ -9,6 +9,6 @@ module "vpc" {
     is_peering_required = true
 }
 
-output "vpc_ids" {
-    value = module.vpc.vpc_id
-}
+# output "vpc_ids" {
+#     value = module.vpc.vpc_id
+# }
