@@ -80,7 +80,7 @@ resource "terraform_data" "catalogue_delete" {
   
   # make sure you have aws configure in your laptop
   provisioner "local-exec" {
-    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue.id}"
+    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue.id} --region us-east-1"
   }
 
   depends_on = [aws_ami_from_instance.catalogue]
