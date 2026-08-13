@@ -526,15 +526,15 @@ resource "aws_security_group_rule" "backend_alb_payment" {
   security_group_id = module.backend_alb.sg_id
 }
 
-#Frontend
-# resource "aws_security_group_rule" "frontend_vpn" {
-#   type              = "ingress"
-#   from_port         = 22
-#   to_port           = 22
-#   protocol          = "tcp"
-#   source_security_group_id = module.vpn.sg_id
-#   security_group_id = module.frontend.sg_id
-# }
+# Frontend
+resource "aws_security_group_rule" "frontend_vpn" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  source_security_group_id = module.vpn.sg_id
+  security_group_id = module.frontend.sg_id
+}
 
 # resource "aws_security_group_rule" "frontend_bastion" {
 #   type              = "ingress"
