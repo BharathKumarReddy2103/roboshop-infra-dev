@@ -181,11 +181,11 @@ resource "aws_route53_record" "mysql" {
   allow_overwrite = true
 }
 
-# resource "aws_ssm_parameter" "mysql_host" {
-#   name  = "/${var.project}/${var.environment}/mysql/mysql_host"
-#   type  = "String"
-#   value = aws_route53_record.mysql.name
-# }
+resource "aws_ssm_parameter" "mysql_host" {
+  name  = "/${var.project}/${var.environment}/mysql/mysql_host"
+  type  = "String"
+  value = aws_route53_record.mysql.name
+}
 
 resource "aws_route53_record" "rabbitmq" {
   zone_id = var.zone_id
